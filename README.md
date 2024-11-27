@@ -1,36 +1,35 @@
-# Large Language Models are Frame-level Directors for Zero-shot Text-to-Video Generation
-<a href="https://arxiv.org/abs/2305.14330"><img src="https://img.shields.io/badge/arXiv-2305.14330-B31B1B"></a>
+# Dockerised Text2Video-Zero
 
-## 🎥 Zero-shot Video Demo
+This repository provides a Dockerised version of the [Text2Video-Zero](https://github.com/Picsart-AI-Research/Text2Video-Zero) project.
 
-https://github.com/KU-CVLAB/DirecT2V/assets/5498512/b721aa65-8156-4fdc-a371-db6eda6b6f55
+## Original Project
 
-## 📰 Abstract
+For the original codebase and additional details, please visit the official repository:  
+[Text2Video-Zero by Picsart AI Research](https://github.com/Picsart-AI-Research/Text2Video-Zero)
 
->In the paradigm of AI-generated content (AIGC), there has been increasing attention in extending pre-trained text-to-image (T2I) models to text-to-video (T2V) generation. Despite their effectiveness, these frameworks face challenges in maintaining consistent narratives and handling rapid shifts in scene composition or object placement from a single user prompt. This paper introduces a new framework, dubbed DirecT2V, which leverages instruction-tuned large language models (LLMs) to generate frame-by-frame descriptions from a single abstract user prompt. DirecT2V utilizes LLM directors to divide user inputs into separate prompts for each frame, enabling the inclusion of time-varying content and facilitating consistent video generation. To maintain temporal consistency and prevent object collapse, we propose a novel value mapping method and dual-softmax filtering. Extensive experimental results validate the effectiveness of the DirecT2V framework in producing visually coherent and consistent videos from abstract user prompts, addressing the challenges of zero-shot video generation. The code and demo will be publicly availble.
+## Getting Started
 
-![image](https://github.com/KU-CVLAB/DirecT2V/assets/5498512/cb7555ec-71dd-4d48-b021-ff742d00e524)
+### Prerequisites
 
-**Overall pipeline of DirecT2V.** Our framework consists of two parts: directing an abstract user prompt with an LLM director (GPT-4) and video generation with a modified T2I diffusion (Stable Diffusion).
+- Docker installed on your machine.
+- Access to a compatible GPU (NVIDIA recommended).
 
-## 🗃️: Code
+### Usage
 
-The running code can be found in `run_direct2v.py`. We used PyTorch 1.13.0 and Diffusers 1.19.3.
+To run the Dockerised version, execute the following command:
+
+```bash
+./run.sh <gpu_id>
 ```
-python run_direct2v.py
-```
 
-## 🔥 TODOs
-- [X] Upload code
-- [ ] Implement a demo using the ChatGPT API
-- [ ] Improve efficiency
+- Replace `<gpu_id>` with the ID of the GPU you want to use.  
+  For example, use `0` for the default GPU.
+- **Note:** Multi-GPU support is not configured, as it was unnecessary for this lightweight model.
 
-## Cite As
-```
-@article{hong2023large,
-  title={Large Language Models are Frame-level Directors for Zero-shot Text-to-Video Generation},
-  author={Hong, Susung and Seo, Junyoung and Hong, Sunghwan and Shin, Heeseong and Kim, Seungryong},
-  journal={arXiv preprint arXiv:2305.14330},
-  year={2023}
-}
-```
+### Customizing Prompts
+
+The file `data/test.json` contains a list of prompts to be processed when the script runs. These prompts will be converted into GIFs and saved in the `output` directory. You are welcome to modify the prompts in `test.json` to suit your needs.
+
+### Model Configuration
+
+The model settings have been optimized to align with the best parameters provided in the original project.
